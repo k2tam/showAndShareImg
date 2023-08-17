@@ -58,7 +58,7 @@ class MainVC: UIViewController {
         }
         
         let showImageVC = ShowImageVC()
-        showImageVC.image = imageToShow
+        showImageVC.setImageReview(image: imageToShow)
         navigationController?.pushViewController(showImageVC, animated: false)
         
     }

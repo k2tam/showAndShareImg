@@ -9,7 +9,11 @@ import UIKit
 
 class ShowImageVC: UIViewController {
     
-    var image: UIImage!
+    private var image: UIImage?
+    
+    func setImageReview(image: UIImage) {
+        self.image = image
+    }
     
     private let closeBtn: UIButton = {
         let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
@@ -65,13 +69,13 @@ class ShowImageVC: UIViewController {
         ])
     }
     
-    @objc func closeBtnPressed() {
+    @objc private func closeBtnPressed() {
         navigationController?.popViewController(animated: false)
     }
     
 
     
-    @objc func shareBtnPressed() {
+    @objc private func shareBtnPressed() {
         guard let image = image else {
             print("No image to share")
             return
