@@ -35,22 +35,13 @@ class ShowImageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         closeBtn.isUserInteractionEnabled = true
         closeBtn.addTarget(self, action: #selector(closeBtnPressed), for: .touchUpInside)
-        shareBtn.addTarget(self, action: #selector(shareBtnPressed), for: .touchUpInside)   
+        shareBtn.addTarget(self, action: #selector(shareBtnPressed), for: .touchUpInside)
 
     }
-    
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.hidesBarsOnTap = true
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    
     private func setupUI() {
         view.backgroundColor = .black
         
@@ -78,45 +69,17 @@ class ShowImageVC: UIViewController {
         navigationController?.popViewController(animated: false)
     }
     
-    private func hideNavigationBar() {
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            super.touchesBegan(touches, with: event)
 
-            // Prevent the navigation bar from showing
-            navigationController?.setNavigationBarHidden(true, animated: true)
-        }
     
     @objc func shareBtnPressed() {
         guard let image = image else {
             print("No image to share")
             return
         }
-        
-        hideNavigationBar()
-
-        
+          
         let shareSheetVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        
-        // Set up the completion handler
-        shareSheetVC.completionWithItemsHandler = { [weak self] activityType, completed, returnedItems, error in
-            // This closure will be called when the sharing is complete or canceled
-            
-            // Hide the navigation bar
-            self?.hideNavigationBar()
-        }
-        
-
-        
+  
         present(shareSheetVC, animated: true )
-//
-//        // Add a tap gesture recognizer to detect taps outside the shareSheetVC
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOutsideShareSheet(_:)))
-//        tapGesture.cancelsTouchesInView = false
-//        view.window?.addGestureRecognizer(tapGesture)
         
     }
     

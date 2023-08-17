@@ -30,13 +30,6 @@ class MainVC: UIViewController {
         
     }
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        tapGestureRecognizer?.isEnabled = true
-
-    }
-    
     private func setupUI() {
         view.addSubview(imgView)
         
@@ -57,11 +50,8 @@ class MainVC: UIViewController {
         
     }
     
-    //Go to show image
+    //Go to show imageVC
     @objc func imagePressed() {
-        // Disable the tap gesture recognizer to prevent further taps
-        tapGestureRecognizer?.isEnabled = false
-        
         guard let imageToShow = imgView.image else {
             print("No image to show")
             return
@@ -70,7 +60,6 @@ class MainVC: UIViewController {
         let showImageVC = ShowImageVC()
         showImageVC.image = imageToShow
         navigationController?.pushViewController(showImageVC, animated: false)
-        
         
     }
 }

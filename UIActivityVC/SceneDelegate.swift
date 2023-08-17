@@ -25,9 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let mainVC = MainVC()
         navigationController.viewControllers = [mainVC]
-        
-        
-        
+        navigationController.isNavigationBarHidden = true
+
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
